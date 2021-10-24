@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-root',
@@ -8,20 +8,25 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class AppComponent {
   form: FormGroup;
-  name = new FormControl('', [Validators.required, Validators.minLength(3)]);
-  email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('',
-    [Validators.required,
-      Validators.minLength(3),
-      Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$')
-    ]);
+  // name = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  // email = new FormControl('', [Validators.required, Validators.email]);
+  // password = new FormControl('',
+  //   [Validators.required,
+  //     Validators.minLength(3),
+  //     Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$')
+  //   ]);
+  name: any;
+  email: any;
+  password: any;
 
-  constructor() {
-    this.form = new FormGroup({
-      email: this.email,
-      password: this.password
 
-    });
+  constructor(private formBuilder : FormBuilder) {
+    this.form = formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(3),
+      Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$')]]
+    })
   }
 
   save(form: FormGroup): void {
