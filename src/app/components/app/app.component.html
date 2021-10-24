@@ -1,0 +1,12 @@
+<form [formGroup]="form">
+  <div><input type="text" [formControl]="name" placeholder="enter name"></div>
+  <div *ngIf="!name.valid">invalid name</div>
+  <br>
+  <div><input type="text" [formControl]="email" placeholder="enter email"></div>
+  <div *ngIf="!email.valid">invalid email</div>
+  <br>
+  <div><input type="text" [formControl]="password" placeholder="enter password"></div>
+  <div *ngIf="!password.valid">invalid password</div>
+  <br>
+  <div><button [disabled]="!email.valid || !password.valid"  (click)="save(form)">login</button></div>
+</form>
