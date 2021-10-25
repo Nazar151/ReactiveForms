@@ -5,8 +5,11 @@
   <div><input type="text" [formControl]="email" placeholder="enter email"></div>
   <div *ngIf="!email.valid">invalid email</div>
   <br>
-  <div><input type="text" [formControl]="password" placeholder="enter password"></div>
+  <div><input type="password" [formControl]="password" placeholder="enter password"></div>
   <div *ngIf="!password.valid">invalid password</div>
   <br>
-  <div><button [disabled]="!email.valid || !password.valid"  (click)="save(form)">login</button></div>
+  <div><input type="password" [formControl]="confirmPassword" placeholder="confirm password"></div>
+  <div *ngIf="form.hasError('passwordError') && form.controls.confirmPassword.touched">password not match</div>
+  <br>
+  <div><button [disabled]="!form.valid || form.hasError('passwordError')"  (click)="save(form)">login</button></div>
 </form>
